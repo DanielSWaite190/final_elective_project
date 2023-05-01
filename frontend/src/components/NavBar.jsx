@@ -6,7 +6,12 @@ function NavBar() {
   return (
   <Navbar bg="light" variant="light">
     <Container>
-      <Navbar.Brand href="/"><img src="../media/favicon/ring.ico" alt="" /></Navbar.Brand>
+      <Navbar.Brand href="/">
+        <img src={require("../media/favicon/ring.ico")} 
+          alt="" 
+          width="30"
+          height="30"/>
+        </Navbar.Brand>
       <Nav className="me-auto">
         <Nav.Link href="/production">Production Schedule</Nav.Link>
         <Nav.Link href="/about">How Halo's Are Born</Nav.Link>
@@ -15,5 +20,4 @@ function NavBar() {
   </Navbar>
   );
 }
-
 export default NavBar;
