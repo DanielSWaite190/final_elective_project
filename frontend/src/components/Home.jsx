@@ -1,6 +1,5 @@
 import React from "react";
 import Image from 'react-bootstrap/Image';
-import "./Home.css"
 
 // function Home() {
 //   return (
@@ -30,28 +29,28 @@ function Home() {
   return (
     <React.Fragment>
       <div class=".bg-primary.bg-gradient">
-        <Image src={require("../../media/rings.jpeg")} height="100%" width="100%"/>
-        <h1>A Marvel Of Engineering!</h1>
-        <h3>What makes a Halo special?</h3>
+        <Image src={require("../media/rings.jpeg")} height="100%" width="100%"/>
+        <h1 class="home-h1">A Marvel Of Engineering!</h1>
+        <h3 class="home-h3">What makes a Halo special?</h3>
       </div>
 
       <div id="topics">
         <div class="tCards">
-            <Image src={require("../../media/Halo_Wars_Sentinel.jpg")} class="imgTopic" alt="Halo Sentinel"/>
-            <h5>Sentinel Work Force</h5>
-            <p>A fully automated army dedicated to keeping your Halo at full operation</p>
+            <Image src={require("../media/Halo_Wars_Sentinel.jpg")} class="imgTopic" alt="Halo Sentinel"/>
+            <h5 class="home-h5">Sentinel Work Force</h5>
+            <p class="home-p">A fully automated army dedicated to keeping your Halo at full operation</p>
         </div>
 
         <div class="tCards">
-            <Image src={require("../../media/fiering.jpeg")} class="imgTopic" alt="Halo Firing"/>
-            <h5>The Weapon</h5>
-            <p>Not Cortana's sister, but a Halo's true purpose</p>
+            <Image src={require("../media/fiering.jpeg")} class="imgTopic" alt="Halo Firing"/>
+            <h5 class="home-h5">The Weapon</h5>
+            <p class="home-p">Not Cortana's sister, but a Halo's true purpose</p>
         </div>
 
         <div class="tCards">
-            <Image src={require("../../media/structure.jpeg")} class="imgTopic" alt="Inside A Halo"/>
-            <h5>Built To Last </h5>
-            <p>We have backup systems for the backup systems, just in case...</p>
+            <Image src={require("../media/structure.jpeg")} class="imgTopic" alt="Inside A Halo"/>
+            <h5 class="home-h5">Built To Last </h5>
+            <p class="home-p">We have backup systems for the backup systems, just in case...</p>
         </div>
       </div>
     </React.Fragment>
