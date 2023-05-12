@@ -1,4 +1,5 @@
 import React from "react";
+import List from "./List";
 
 function Production() {
   return (
@@ -17,8 +18,7 @@ function Production() {
             <p class="production-p">30,000 kilometer</p>
         </div>
       </div>
-      
-
+      <List/>
     </React.Fragment>
   );
 }
