@@ -4,25 +4,64 @@ body {
 
 
 
-.home-h1, .home-h3, .home-h5, .home-p{
+.home-h1, .home-h3, .home-h5, .home-p, .forged{
     color: white;
+}
+
+.home-h5{
+    text-align: center;
+}
+
+.home-p{
+    font-size: x-small;
+    text-align: center;   
 }
 
 #topics{
     display: flex;
-    margin-top: 60px;
     justify-content: space-around;
 }
 
-.tCards{
-    height: 250px;
-    width: 350px;
-    
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+.marvel{
+    font-size: 100px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    position: absolute;
 }
 
+#mar_one{top: 400px; left: 16px;}
+#mar_two{top: 500px; left: 150px;}
+#mar_three{top: 600px; left: 16px;}
+
+.forged{
+    font-size: 50px;
+    text-shadow: 2px 2px #4ab8c8;
+}
+#forg_four{
+    position: absolute;
+    top: 1720px;
+    left: 200px;
+}
+#forg_five{
+    position: absolute;
+    top: 1790px;
+    left: 400px;
+}
+#learn{
+    position: absolute;
+    top: 2000px; left: 300px;
+
+    width: 200px; height: 90px;;
+    background-color: #1f38ca;
+    border-radius: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#learn_p{
+    color: rgb(219, 219, 219);
+    font-size: 25px;
+}
 
 
 .production-h1{
