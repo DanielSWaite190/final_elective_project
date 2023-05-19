@@ -29,9 +29,9 @@ function List() {
 
   return (
     <React.Fragment>
-        <ul>
+        <ul id="list">
             {ring?.map((halo) => (
-            <Card style={{ width: '18rem' }}>
+            <Card class="card" style={{ width: '18rem' }}>
                 <Card.Img variant="top" src={halo.img ? halo.img : dimage} />
                 <Card.Body>
                     <Card.Title>Halo Installation Number {halo.installation}</Card.Title>

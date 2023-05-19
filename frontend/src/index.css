@@ -132,3 +132,17 @@ iframe{
 }
 
 footer{color: white; text-align: center;}
+
+
+/* List component */
+
+
+#list{
+    display: flex;
+    flex-direction: row;
+}
+
+/* .card{
+    align-self: center;
+} */
+
