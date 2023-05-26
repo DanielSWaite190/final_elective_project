@@ -18,7 +18,7 @@ function Production() {
             <p class="production-p">30,000 kilometer</p>
         </div>
       </div>
-      <List/>
+      <div id="list"><List/></div>
     </React.Fragment>
   );
 }

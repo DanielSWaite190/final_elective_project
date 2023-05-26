@@ -1,5 +1,7 @@
 import React from "react";
 import Image from 'react-bootstrap/Image';
+import Button from 'react-bootstrap/Button';
+
 
 // function Home() {
 //   return (
@@ -57,10 +59,15 @@ function Home() {
       </div>
 
       <div id="bannerD2">
+            <div id="forged">
+              <h1 class="forged" id="forg_four">Not exactly forged in the heart of a dying star, </h1>
+              <h1 class="forged" id="forg_five">but forged from the raw materials of planetoids</h1>
+            </div>
+            {/* <div id="learn"><a href="/about"><p id="learn_p">Learn How Halo's Are Born</p></a></div> */}
+            <div id="d_learn">
+              <Button id="learn" href="/abour">Learn How Halo's Are Born</Button>
+            </div>
             <Image src={require("../media/halo&ark.png")} class="imgTopic" alt="Halo Sentinel" width="100%"/>
-            <h1 class="forged" id="forg_four">Not exactly forged in the heart of a dying star, </h1>
-            <h1 class="forged" id="forg_five">but forged from the raw materials of planetoids</h1>
-            <div id="learn"><a href="/about"><p id="learn_p">Learn How Halo's Are Born</p></a></div>
         </div>
 
 

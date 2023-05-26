@@ -29,21 +29,23 @@ function List() {
 
   return (
     <React.Fragment>
-        <ul id="list">
-            {ring?.map((halo) => (
-            <Card class="card" style={{ width: '18rem' }}>
-                <Card.Img variant="top" src={halo.img ? halo.img : dimage} />
-                <Card.Body>
-                    <Card.Title>Halo Installation Number {halo.installation}</Card.Title>
-                </Card.Body>
-                <ListGroup className="list-group-flush">
-                    <ListGroup.Item>Effective range: {halo.range}</ListGroup.Item>
-                    <ListGroup.Item>Generation: {halo.array}</ListGroup.Item>
-                    <ListGroup.Item>operational: {halo.operational}</ListGroup.Item>
-                </ListGroup>
-            </Card>
-            ))}
-        </ul>
+        <div id="container">
+            <ul id="list">
+                {ring?.map((halo) => (
+                <Card class="card" style={{ width: '18rem' }}>
+                    <Card.Img variant="top" src={halo.img ? halo.img : dimage} />
+                    <Card.Body>
+                        <Card.Title>Halo Installation Number {halo.installation}</Card.Title>
+                    </Card.Body>
+                    <ListGroup className="list-group-flush">
+                        <ListGroup.Item>Effective range: {halo.range}</ListGroup.Item>
+                        <ListGroup.Item>Generation: {halo.array}</ListGroup.Item>
+                        <ListGroup.Item>operational: {halo.operational}</ListGroup.Item>
+                    </ListGroup>
+                </Card>
+                ))}
+            </ul>
+        </div>
     </React.Fragment>
   );
 }

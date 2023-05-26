@@ -36,7 +36,10 @@ body {
     font-size: 50px;
     text-shadow: 2px 2px #4ab8c8;
 }
-#forg_four{
+#forged{
+    text-align: center;
+}
+/* #forg_four{
     position: absolute;
     top: 1720px;
     left: 200px;
@@ -45,19 +48,12 @@ body {
     position: absolute;
     top: 1790px;
     left: 400px;
-}
-#learn{
-    position: absolute;
-    top: 2000px; left: 300px;
-
-    width: 200px; height: 90px;;
-    background-color: #1f38ca;
-    border-radius: 20px;
-
+} */
+#d_learn{
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-around;
 }
+
 #learn_p{
     color: rgb(219, 219, 219);
     font-size: 25px;
@@ -91,7 +87,6 @@ body {
     height: 400px;
     border-radius: 8px;
 }
-
 
 
 
@@ -136,13 +131,13 @@ footer{color: white; text-align: center;}
 
 /* List component */
 
-
+#container{
+}
 #list{
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
 }
 
-/* .card{
-    align-self: center;
-} */
+
 
