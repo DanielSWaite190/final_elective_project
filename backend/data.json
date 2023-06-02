@@ -38,5 +38,13 @@
       "operational": 2,
       "id": 4
     }
+  ],
+  
+  "users": 
+  [
+    {
+      "username": "root",
+      "password": "root"
+    }
   ]
 }
