@@ -15,6 +15,10 @@ const dotenv = require('dotenv');
 dotenv.config({ path: '.env' });
 const JWT_SECRET = process.env.JWT_SECRET;
 
+
+
+
+
 const setUser = async (req, res, next) => {
   if(!req.header('Authorization'))
     next()
@@ -25,26 +29,25 @@ const setUser = async (req, res, next) => {
     next();
   }
 }
-
-//TODO Write this function with const
-function creatUser(username, password) {
-  this.username = username;
-  this.password = password;
-}
-
-function findUser(username){
+const findUser = (username) => {
   for (let i = 0; i < data.users.length; i++){
     if (data.users[i].username == username)
       return data.users[i]
   }
   return false
 }
+function creatUser (username, password){
+  this.username = username;
+  this.password = password;
+}
 
+//ROUTES
 app.post('/register/', async (req, res) =>{
   const {username, password} = req.body;
   const hashedPw = await bcrypt.hash(password, 10);
-  data.users.push(new creatUser(username, hashedPw))
-  res.status(201).send(data.users);
+  const newuser = new creatUser(username, hashedPw)
+  data.users.push(newuser)
+  res.status(201).send(newuser);
 })
 
 app.post('/user/login', async (req, res) => {
@@ -73,7 +76,10 @@ app.get('/', (req, res) => {
 })
 
 app.get('/ring', setUser,(req, res) => {
-  res.send(data.rings)
+  if(!req.user)
+    res.sendStatus(401)
+  else
+    res.send(data.rings)
 })
 
 app.get('/users', (req, res) => {
