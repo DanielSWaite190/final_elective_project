@@ -4,21 +4,14 @@ const app = express()
 const port = 5000
 const cors = require("cors")
 app.use(cors({origin: "http://localhost:3000"}))
-
-//token & request body
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 app.use(express.json());
-
-//encription
 const dotenv = require('dotenv');
 dotenv.config({ path: '.env' });
 const JWT_SECRET = process.env.JWT_SECRET;
 
-
-
-
-
+//Middleware
 const setUser = async (req, res, next) => {
   if(!req.header('Authorization'))
     next()
@@ -41,7 +34,7 @@ function creatUser (username, password){
   this.password = password;
 }
 
-//ROUTES
+//Setup Routes
 app.post('/register/', async (req, res) =>{
   const {username, password} = req.body;
   const hashedPw = await bcrypt.hash(password, 10);
@@ -49,7 +42,6 @@ app.post('/register/', async (req, res) =>{
   data.users.push(newuser)
   res.status(201).send(newuser);
 })
-
 app.post('/user/login', async (req, res) => {
   const username = req.body.username
   const foundUser = findUser(username)
@@ -68,9 +60,7 @@ app.post('/user/login', async (req, res) => {
     res.status(401).send('Incorrect password');
 })
 
-
-
-
+// Routes
 app.get('/', (req, res) => {
   res.send("Final Elective Project: Hi Mom, look it's express!")
 })
