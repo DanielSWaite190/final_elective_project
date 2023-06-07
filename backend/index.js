@@ -46,7 +46,8 @@ app.post('/user/login', async (req, res) => {
   const username = req.body.username
   const foundUser = findUser(username)
   if(!foundUser){
-    res.status(401).send('User not found');
+    // res.status(401).send('User not found');
+    res.status(401).send(`${req.body.username} not found`);
     return
   }
 

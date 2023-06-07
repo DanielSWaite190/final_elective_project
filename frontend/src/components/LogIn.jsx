@@ -3,9 +3,6 @@ import jwt from "jwt-decode"
 import { useState } from "react";
 import Cookies from "universal-cookie"
 
-// const cors = require("cors")
-// app.use(cors({origin: "http://localhost:3000"}))
-
 function Register() {
   const cookies = new Cookies();
   const [user, setUser] = useState(null);
@@ -14,54 +11,48 @@ function Register() {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
 
-
   const login = () => {
-  fetch('http://localhost:5000/user/login', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    mode: 'cors',
-    body: JSON.stringify(
-      {
-        "username": name,
-        "password": password
-      }
-    )
-  })
-  .then((res) => res.json())
-  .then((data) => {
-    setToken(data.token)
-  })
-  .catch((error) => {
-    console.error('error:', error);
-  })
-  
+    fetch('http://localhost:5000/user/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      mode: 'cors',
+      body: JSON.stringify(
+        {
+          "username": name,
+          "password": password
+        }
+      )
+    })
+    .then((res) => res.json())
+    .then((data) => {
+      setToken(data.token)
+    })
+    .catch((error) => {
+      console.error('error:', error);
+    })
+    
 
-  console.log('token', token)
+    console.log('token', token)
 
-  const decoded = jwt(token)
-
-  setUser(decoded);
-
-  cookies.set("jwt_authorization", token, {
-    expires: new Date(decoded.exp * 1000)
-  })
-
-  } 
+    const decoded = jwt(token)
+    setUser(decoded);
+    cookies.set("jwt_authorization", token, {
+      expires: new Date(decoded.exp * 1000)
+    })
+    
+    console.log('user', user)
+  }
 
   const logout = () => {
     setUser(null);
     cookies.remove("jwt_authorization")
   };
 
-
-
   const handleSubmit = (event) => {
     event.preventDefault();
     setName(name)
     setPassword(password)
   }
-
-
 
   return (
     <React.Fragment> 
@@ -73,7 +64,7 @@ function Register() {
 
     {user ? (
       <div>
-        <h3>{user.name}</h3>
+        <h3>ID{user.id}</h3>
         <button onClick={logout}>Logout</button>
       </div>
     ) : (
