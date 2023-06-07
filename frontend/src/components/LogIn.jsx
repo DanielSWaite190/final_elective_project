@@ -3,30 +3,50 @@ import jwt from "jwt-decode"
 import { useState } from "react";
 import Cookies from "universal-cookie"
 
+// const cors = require("cors")
+// app.use(cors({origin: "http://localhost:3000"}))
+
 function Register() {
+  const cookies = new Cookies();
+  const [user, setUser] = useState(null);
+  const [token, setToken] = useState(null);
 
- const cookies = new Cookies();
- const [user, setUser] = useState(null);
- const [token, setToken] = useState(null);
+  const [name, setName] = useState('');
+  const [password, setPassword] = useState('');
 
- const login = () => {
 
-  fetch('http://localhost:5000/user/login')
-    .then((res) => res.json())
-    .then((data) => {
-      setToken(data.token)
-    })
-    .catch((error) => {
-      console.error(error);
-    })
+  const login = () => {
+  fetch('http://localhost:5000/user/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    mode: 'cors',
+    body: JSON.stringify(
+      {
+        "username": name,
+        "password": password
+      }
+    )
+  })
+  .then((res) => res.json())
+  .then((data) => {
+    setToken(data.token)
+  })
+  .catch((error) => {
+    console.error('error:', error);
+  })
+  
 
-   const decoded = jwt(token)
-   setUser(decoded)
+  console.log('token', token)
 
-   cookies.set("jwt_authorization", token, {
-     expires: new Date(decoded.expires * 1000),
-   });
- } 
+  const decoded = jwt(token)
+
+  setUser(decoded);
+
+  cookies.set("jwt_authorization", token, {
+    expires: new Date(decoded.exp * 1000)
+  })
+
+  } 
 
   const logout = () => {
     setUser(null);
@@ -34,12 +54,21 @@ function Register() {
   };
 
 
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setName(name)
+    setPassword(password)
+  }
+
+
+
   return (
     <React.Fragment> 
-    <h1 class="home-h1">Login</h1>
-    <form>
-      <input type="text" placeholder="name"></input>
-      <input type="password" placeholder="password"></input>
+    <h1 className="home-h1">Login</h1>
+    <form onSubmit={handleSubmit}>
+      <input type="text" placeholder="name" value={name} onChange={(event) => setName(event.target.value)} autoComplete="on"></input>
+      <input type="password" placeholder="password" value={password} onChange={(event) => setPassword(event.target.value)} autoComplete="on"></input>
     </form>
 
     {user ? (
