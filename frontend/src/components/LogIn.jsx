@@ -1,33 +1,57 @@
 import React from "react";
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
+import jwt from "jwt-decode"
+import { useState } from "react";
+import Cookies from "universal-cookie"
 
 function Register() {
+
+ const cookies = new Cookies();
+ const [user, setUser] = useState(null);
+ const [token, setToken] = useState(null);
+
+ const login = () => {
+
+  fetch('http://localhost:5000/user/login')
+    .then((res) => res.json())
+    .then((data) => {
+      setToken(data.token)
+    })
+    .catch((error) => {
+      console.error(error);
+    })
+
+   const decoded = jwt(token)
+   setUser(decoded)
+
+   cookies.set("jwt_authorization", token, {
+     expires: new Date(decoded.expires * 1000),
+   });
+ } 
+
+  const logout = () => {
+    setUser(null);
+    cookies.remove("jwt_authorization")
+  };
+
+
   return (
-    <React.Fragment>
-      <h1 class="home-h1">Register</h1>
+    <React.Fragment> 
+    <h1 class="home-h1">Login</h1>
+    <form>
+      <input type="text" placeholder="name"></input>
+      <input type="password" placeholder="password"></input>
+    </form>
 
-    <Form>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control type="email" placeholder="Enter email" />
-        <Form.Text className="text-muted">
-          We'll never share your email with anyone else.
-        </Form.Text>
-      </Form.Group>
-
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicCheckbox">
-        <Form.Check type="checkbox" label="Check me out" />
-      </Form.Group>
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
-    </Form>
-
+    {user ? (
+      <div>
+        <h3>{user.name}</h3>
+        <button onClick={logout}>Logout</button>
+      </div>
+    ) : (
+      <div>
+        <button onClick={login} >Login</button>
+      </div>)
+    }
     </React.Fragment>
   );
 }
