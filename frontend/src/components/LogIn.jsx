@@ -12,46 +12,33 @@ function LogIn() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('')
 
-  const login = () => {
-    fetch('http://localhost:5000/user/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      mode: 'cors',
-      body: JSON.stringify(
-        {
-          "username": name,
-          "password": password
-        }
-      )
-    })
-    .then((res) => res.json())
-    .then((data) => {
-      // HERE
-      console.log('Token:', data.token)
-      setToken(data.token)
+  const login = async () => {
+    try{
+        const response = await fetch('http://localhost:5000/user/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        mode: 'cors',
+        body: JSON.stringify(
+            {
+              "username": name,
+              "password": password
+            }
+          )
+        })
+        const token = await response.json()
+        console.log(token)
 
-      const decoded = jwt(token)
-      console.log('decoded:', decoded)
-      setUser(decoded);
-      cookies.set("jwt_authorization", token, {
-      expires: new Date(decoded.exp * 1000)
-    })
-    })
-    .catch((error) => {
-      console.error('error:', error);
-      setError(error)
-    })
-    
-
-    // console.log('token', token)
-
-    // const decoded = jwt(token)
-    // setUser(decoded);
-    // cookies.set("jwt_authorization", token, {
-    //   expires: new Date(decoded.exp * 1000)
-    // })
-    
-    // console.log('user', user)
+        const decoded = jwt(token.token)
+        console.log('decoded:', decoded)
+        setUser(decoded);
+        cookies.set("jwt_authorization", token, {
+        expires: new Date(decoded.exp * 1000)
+      })
+  
+    } catch (error){
+      console.error(error.message)
+      setError(error.message)
+    }
   }
 
   const logout = () => {
@@ -70,7 +57,7 @@ function LogIn() {
     <h1 className="home-h1">Login</h1>
 
     {error ? (
-      <div className="home-h3">problem!</div>
+      <div className="home-h3">problem!{error.message}</div>
     ):(<div/>)}
 
     <form onSubmit={handleSubmit}>
