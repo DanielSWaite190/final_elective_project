@@ -46,14 +46,13 @@ app.post('/user/login', async (req, res) => {
   const username = req.body.username
   const foundUser = findUser(username)
   if(!foundUser){
-    // res.status(401).send('User not found');
     res.status(401).send(`${req.body.username} not found`);
     return
   }
 
   const isMatch = await bcrypt.compare(req.body.password, foundUser.password);
   if(isMatch) {
-    const token = jwt.sign({id: foundUser.id}, JWT_SECRET);
+    const token = jwt.sign({foundUser}, JWT_SECRET);
     res.status(200).send({
       message: `successfully logged in user ${foundUser.username}`,
       token: token});
