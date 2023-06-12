@@ -37,10 +37,14 @@ function creatUser (username, password){
 //Setup Routes
 app.post('/register/', async (req, res) =>{
   const {username, password} = req.body;
-  const hashedPw = await bcrypt.hash(password, 10);
-  const newuser = new creatUser(username, hashedPw)
-  data.users.push(newuser)
-  res.status(201).send(newuser);
+  if(username == "" || password == ""){
+    res.status(400).send("User and password required")
+  } else {
+    const hashedPw = await bcrypt.hash(password, 10);
+    const newuser = new creatUser(username, hashedPw)
+    data.users.push(newuser)
+    res.status(201).send(newuser);
+  }
 })
 app.post('/user/login', async (req, res) => {
   const username = req.body.username

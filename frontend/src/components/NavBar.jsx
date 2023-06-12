@@ -13,8 +13,18 @@ function NavBar() {
           height="30"/>
         </Navbar.Brand>
       <Nav className="me-auto">
-        <Nav.Link href="/production">Production Schedule</Nav.Link>
-        <Nav.Link href="/about">How Halo's Are Born</Nav.Link>
+        <div id="now">
+          <div className='left'>
+            <Nav.Link href="/production">Production Schedule</Nav.Link>
+            <Nav.Link href="/about">How Halo's Are Born</Nav.Link>
+          </div>
+          <div id='test'>
+            <div className='right'>
+              <Nav.Link href="/login">Login</Nav.Link>
+              <Nav.Link href="/register">Register</Nav.Link>
+            </div>
+          </div>
+        </div>
       </Nav>
     </Container>
   </Navbar>
