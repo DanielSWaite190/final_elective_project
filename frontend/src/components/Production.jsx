@@ -1,7 +1,11 @@
 import React from "react";
 import List from "./List";
+// import { useContext } from "react";
+import { useAuth } from "./ContextContext";
 
-function Production(props) {
+function Production() {
+  const authorized = useAuth();
+
   return (
     <React.Fragment>
       <h1 className="production-h1">Choose your new Halo</h1>
@@ -18,7 +22,7 @@ function Production(props) {
             <p className="production-p">30,000 kilometer</p>
         </div>
       </div>
-      <div id="list"><List/></div>
+      {authorized ? (<div id="list"><List/></div>) : (<div/>)}
     </React.Fragment>
   );
 }

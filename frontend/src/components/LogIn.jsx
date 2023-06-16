@@ -3,6 +3,8 @@ import jwt from "jwt-decode"
 import { useState } from "react";
 import Cookies from "universal-cookie"
 
+import { useUpdateAuth, useAuth } from "./ContextContext"
+
 function LogIn() {
   const cookies = new Cookies();
   const [user, setUser] = useState(null);
@@ -10,6 +12,10 @@ function LogIn() {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+
+  // const Auth = useAuth();
+  const UpdateAuth = useUpdateAuth();
+  const Auth = useAuth();
 
   const login = async () => {
     try{
@@ -26,7 +32,10 @@ function LogIn() {
         })
         const token = await response.json()  //<-- does/can this be a state variabel
         const decoded = jwt(token.token)
-        setUser(decoded);
+        await console.log(token.token)
+        await setUser(decoded);
+        await UpdateAuth(token.token);
+        await console.log('Auth: ', Auth)
         cookies.set("jwt_authorization", token, {
         expires: new Date(decoded.exp * 1000)
       })
@@ -39,6 +48,7 @@ function LogIn() {
 
   const logout = () => {
     setUser(null);
+    UpdateAuth(false);
     cookies.remove("jwt_authorization")
   };
 
