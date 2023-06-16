@@ -4,6 +4,28 @@ body {
 
 
 
+
+#now{
+    display: flex;
+    flex-direction: row;
+}
+
+.left{
+    display: flex;
+    flex-direction: row
+}
+
+.right{
+    display: flex;
+    flex-direction: row;
+}
+
+#test{
+    
+}
+
+
+
 .home-h1, .home-h3, .home-h5, .home-p, .forged{
     color: white;
 }
