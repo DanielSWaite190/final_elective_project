@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import List from "./List";
-// import { useContext } from "react";
-import { useAuth } from "./ContextContext";
+// import {AuthProvider} from "./ContextContext"
+import { AuthContext } from "../App";
 
 function Production() {
-  const authorized = useAuth();
+
+  const { auth, setAuth } = useContext(AuthContext)
+
+
+  // useEffect(() => {
+  //   console.log('UseEffect', auth)
+  // }, [auth]);
 
   return (
     <React.Fragment>
@@ -22,10 +28,9 @@ function Production() {
             <p className="production-p">30,000 kilometer</p>
         </div>
       </div>
-      {authorized ? (<div id="list"><List/></div>) : (<div/>)}
+      {true ? (<div id="list"><List/></div>) : (<div/>)}
     </React.Fragment>
   );
 }
 
 export default Production;
-

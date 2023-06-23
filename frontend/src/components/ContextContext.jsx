@@ -1,25 +1,21 @@
 import React, {useState, useContext } from "react";
 
 const AuthContext = React.createContext()
-const UpdateAuthContext = React.createContext()
+// const AuthUpdateContext = React.createContext()
 
-export const useAuth = () => {
-  return useContext(AuthContext);
-}
+//Creating custom auth hook
+// export const useAuth = () => {
+//   return useContext(AuthContext);
+// }
 
-export const useUpdateAuth = () => {
-  return useContext(UpdateAuthContext);
-};
+export function AuthProvider({children}) {
+  const [auth, setAuth] = useState(null);
 
-export const AuthProvider = ({value, children}) => {
-  const [auth, setAuth] = useState(value);
   return(
-    <AuthContext.Provider value={auth}>
-      <UpdateAuthContext.Provider value={setAuth}>
-        {children}
-      </UpdateAuthContext.Provider>
+    <AuthContext.Provider value={{auth, setAuth}}>
+      {children}
     </AuthContext.Provider>
   );
 };
 
-export default AuthProvider;
+// export default AuthContext;
